@@ -15,7 +15,7 @@ describe('Journalist can login and create article', () => {
       cy.visit("/");
     });
     
-    it("Journalist can login", () => {
+    xit("Journalist can login", () => {
       cy.get('[data-cy="login-form"]').within(() => {
         cy.get('[data-cy="email"]').type("journalist@mail.com");
         cy.get('[data-cy="password"]').type("password");
@@ -49,7 +49,7 @@ describe('Journalist can login and create article', () => {
       });
       cy.visit("/");
     });
-    it("invalid credentials", () => {
+    xit("invalid credentials", () => {
       cy.get('[data-cy="login-form"]').within(() => {
         cy.get('[data-cy="email"]').type("invalid@mail.com");
         cy.get('[data-cy="password"]').type("wrong_password");
@@ -77,15 +77,19 @@ describe('Journalist can login and create article', () => {
         response: "fixture:login_registered.json",
       });
       cy.visit("/");
+    });
+
+    it("User cannot see Create Article button", () => {
       cy.get('[data-cy="login-form"]').within(() => {
         cy.get('[data-cy="email"]').type("registered@mail.com");
         cy.get('[data-cy="password"]').type("password");
         cy.get('[data-cy="button"]').contains("Submit").click();
       });
-    });
-
-    it("User cannot see Create Article button", () => {
       cy.get('[data-cy="create-article"]').should("not.exist");
-    });
+      cy.get('[data-cy="message"]').should(
+        "contain",
+        "Sorry, you don't have the necessary permission"
+      );
+    }); 
   });
 });
