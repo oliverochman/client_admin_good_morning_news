@@ -14,6 +14,7 @@ describe('Journalist can login and create article', () => {
       });
       cy.visit("/");
     });
+    
     it("Journalist can login", () => {
       cy.get('[data-cy="login-form"]').within(() => {
         cy.get('[data-cy="email"]').type("journalist@mail.com");
