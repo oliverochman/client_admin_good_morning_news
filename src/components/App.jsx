@@ -4,7 +4,7 @@ import Authenticate from "./Authenticate";
 import Home from "./Home";
 
 const App = () => {
-  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState(true);
   return (
     <>
       <Switch>
